@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="instruction_text">To provide feedback just tap on the button</string>
+    <string name="ok">OK</string>
+</resources>
