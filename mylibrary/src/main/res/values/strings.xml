@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">My Library</string>
-    <string name="instruction">To provide feedback just tap on the button</string>
-    <string name="Ok">Ok</string>
+    <string name="com_sdk_feedback_instruction_text">To provide feedback,\njust tap on the button.</string>
+    <string name="com_sdk_feedback_ok">Ok</string>
 </resources>

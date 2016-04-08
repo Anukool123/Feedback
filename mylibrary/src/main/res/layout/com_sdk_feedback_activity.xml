@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="myapplication.com.sdk.feedback.LibActivity"
-    android:background="#40000000">
+    android:background="@android:color/transparent">
     <FrameLayout
         android:id="@+id/flLibraryContainerView"
         android:layout_width="match_parent"

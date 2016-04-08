@@ -3,7 +3,10 @@ package com.sdk.feedback;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
+
+import com.sdk.feedback.fragmentfactory.BaseFragment;
+import com.sdk.feedback.fragmentfactory.factory.FragmentFactory;
+import com.sdk.feedback.util.AppConstants;
 
 public class FeedbackActivity extends AppCompatActivity {
 
@@ -16,12 +19,15 @@ public class FeedbackActivity extends AppCompatActivity {
 
         setContentView(R.layout.com_sdk_feedback_activity);
 
-        addFragment();
+        if(getIntent().getStringExtra(AppConstants.FRAGMENT_TAG)!= null)
+            addFragment(getIntent().getStringExtra(AppConstants.FRAGMENT_TAG));
+        else
+            finish();
     }
 
-    private void addFragment()
+    private void addFragment(String fragmentTag)
     {
-        InstructionFragment fragment = new InstructionFragment();
+        BaseFragment fragment = FragmentFactory.getFragment(fragmentTag);
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 

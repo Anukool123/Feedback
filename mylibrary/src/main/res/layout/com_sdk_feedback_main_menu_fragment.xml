@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:id="@+id/com_sdk_feedback_action_all_feedback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:paddingLeft="@dimen/com_sdk_feedback_button_menu_layout_padding_left"
+        android:paddingBottom="@dimen/com_sdk_feedback_button_menu_layout_padding_bottom"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <include layout="@layout/com_sdk_feedback_floating_button"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/com_sdk_feedback_text_size_medium"
+                android:text="All Feedback"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/com_sdk_feedback_action_take_screeshot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="@dimen/com_sdk_feedback_icon_width"
+                android:layout_height="@dimen/com_sdk_feedback_icon_height"
+                android:background="@drawable/floatingbutton"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/com_sdk_feedback_text_size_medium"
+                android:text="Take Screenshot"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/com_sdk_feedback_action_add_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="@dimen/com_sdk_feedback_icon_width"
+                android:layout_height="@dimen/com_sdk_feedback_icon_height"
+                android:background="@drawable/floatingbutton"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/com_sdk_feedback_text_size_medium"
+                android:text="Add Video"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/com_sdk_feedback_action_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="@dimen/com_sdk_feedback_icon_width"
+                android:layout_height="@dimen/com_sdk_feedback_icon_height"
+                android:background="@drawable/floatingbutton"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

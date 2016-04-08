@@ -1,6 +1,6 @@
 package com.sdk.feedback;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.util.Log;
@@ -9,6 +9,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.RelativeLayout;
+
+import com.sdk.feedback.fragment.InstructionFragment;
+import com.sdk.feedback.fragment.MainMenuFragment;
+import com.sdk.feedback.util.AppConstants;
 
 /**
  * Copyright(c) Philips Electronics India Ltd
@@ -27,20 +31,43 @@ public class Setup {
     public static final String TAG = Setup.class.getSimpleName();
 
     static WindowManager windowManager;
-    static RelativeLayout chatHead;
-    static Activity mContext;
+    static RelativeLayout floatingButton;
+    static Context mContext;
     static WindowManager.LayoutParams params;
-    private int requestCode;
-    private int resultCode;
-    private Intent data;
+    static int lastYPosition = 0;
+//    private int requestCode;
+//    private int resultCode;
+//    private Intent data;
 
-    public static void enable(final Activity activity, String apiKey){
 
-        mContext = activity;
-        windowManager = (WindowManager) activity.getSystemService(activity.WINDOW_SERVICE);
+    synchronized public static void registerForFeedback(Context context, String apiKey) {
+        Log.e(TAG, "registerForFeedback");
+        startActivityWithFragment(context, InstructionFragment.TAG);
+    }
 
-        chatHead = new com.sdk.feedback.widget.floatingButton(activity);
-        chatHead.setTranslationX(30);
+    synchronized public static void enable(final Context context, String apiKey){
+        Log.e(TAG, "enable");
+        mContext = context;
+
+        addFloatingButton(mContext);
+
+        addTouchEventToFloatingButton(mContext);
+    }
+
+
+    synchronized public static void disable(){
+        Log.e(TAG, "disable");
+        removeFloatingButton();
+        params = null;
+    }
+
+    private static void addFloatingButton(Context context) {
+        windowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
+
+        if(floatingButton == null) {
+            floatingButton = new com.sdk.feedback.widget.floatingButton(context);
+            floatingButton.setTranslationX(30);
+        }
 
         if(params == null) {
             params = new WindowManager.LayoutParams(
@@ -51,9 +78,16 @@ public class Setup {
                     PixelFormat.TRANSLUCENT);
 
             params.gravity = Gravity.CENTER_VERTICAL | Gravity.RIGHT;
+            params.type = WindowManager.LayoutParams.TYPE_APPLICATION;
+            params.y = lastYPosition;
         }
 
-        chatHead.setOnTouchListener(new View.OnTouchListener() {
+        if(!floatingButton.isShown())
+                windowManager.addView(floatingButton, params);
+    }
+
+    private static void addTouchEventToFloatingButton(final Context context) {
+        floatingButton.setOnTouchListener(new View.OnTouchListener() {
             private int originalX = params.x;
             private int initialX;
             private int initialY;
@@ -72,30 +106,47 @@ public class Setup {
                         return true;
                     case MotionEvent.ACTION_UP:
                         Log.i(TAG, "ACTION_UP " + originalX);
-                        if( (Math.abs(initialTouchX - event.getRawX())<5) && (Math.abs(initialTouchY - event.getRawY())<5) )
-                        {
-                            Log.e(TAG,"It's a click ! ");
-                            onFloatingButtonClicked(activity);
-                        }
-                        else {
+                        if ((Math.abs(initialTouchX - event.getRawX()) < 5) && (Math.abs(initialTouchY - event.getRawY()) < 5)) {
+                            Log.e(TAG, "It's a click ! ");
+                            onFloatingButtonClicked(context);
+                        } else {
                             Log.e(TAG, "you moved the head");
                             params.x = originalX;
-                            windowManager.updateViewLayout(chatHead, params);
-                            chatHead.setTranslationX(30);
+                            windowManager.updateViewLayout(floatingButton, params);
+                            floatingButton.setTranslationX(30);
                         }
                         return true;
                     case MotionEvent.ACTION_MOVE:
-                        chatHead.setTranslationX(0);
+                        floatingButton.setTranslationX(0);
                         params.x = initialX + (int) (initialTouchX - event.getRawX());
                         params.y = initialY + (int) (event.getRawY() - initialTouchY);
-                        windowManager.updateViewLayout(chatHead, params);
+                        lastYPosition = params.y;
+                        windowManager.updateViewLayout(floatingButton, params);
                         return true;
                 }
                 return false;
             }
         });
+    }
 
-        windowManager.addView(chatHead, params);
+    private static void onFloatingButtonClicked(Context context) {
+        startActivityWithFragment(context, MainMenuFragment.TAG);
+    }
+
+    private static void startActivityWithFragment(Context context, String tag) {
+        Intent intent = new Intent(context, FeedbackActivity.class);
+        if(tag!=null){
+            intent.putExtra(AppConstants.FRAGMENT_TAG, tag);
+        }
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    private static void removeFloatingButton() {
+        if (floatingButton != null &&  floatingButton.isShown()) {
+            windowManager.removeView(floatingButton);
+            floatingButton = null;
+        }
     }
 
 //    public void checkDrawOverlayPermission() {
@@ -117,22 +168,4 @@ public class Setup {
 //            }
 //        }
 //    }
-
-    private static void onFloatingButtonClicked(Activity activity) {
-        Intent intent = new Intent(activity, FeedbackActivity.class);
-        activity.startActivity(intent);
-        removeFloatingButton();
-    }
-
-    public static void disable(){
-        removeFloatingButton();
-        params = null;
-    }
-
-    private static void removeFloatingButton() {
-        if (chatHead != null) {
-            windowManager.removeView(chatHead);
-            chatHead = null;
-        }
-    }
 }
