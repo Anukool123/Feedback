@@ -65,7 +65,7 @@ public class Setup {
         windowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
 
         if(floatingButton == null) {
-            floatingButton = new com.sdk.feedback.widget.floatingButton(context);
+            floatingButton = new com.sdk.feedback.widget.FloatingButtonIcon(context);
             floatingButton.setTranslationX(30);
         }
 

@@ -13,7 +13,7 @@ import android.widget.Button;
 
 import com.sdk.feedback.R;
 import com.sdk.feedback.fragmentfactory.BaseFragment;
-import com.sdk.feedback.widget.floatingButton;
+import com.sdk.feedback.widget.FloatingButtonIcon;
 
 /**
  * Created by 310124463 on 4/5/2016.
@@ -48,7 +48,7 @@ public class InstructionFragment extends BaseFragment {
 
     private static void addFloatingButton(Context context) {
         WindowManager windowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
-        floatingButton floatingButton = new com.sdk.feedback.widget.floatingButton(context);
+        FloatingButtonIcon floatingButton = new com.sdk.feedback.widget.FloatingButtonIcon(context);
         floatingButton.setTranslationX(30);
 
 
