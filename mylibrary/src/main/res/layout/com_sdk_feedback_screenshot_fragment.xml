@@ -8,4 +8,32 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
 
+    <RelativeLayout
+        android:id="@+id/rlInstructionToSave"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="#66736F6E">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="30dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_height="wrap_content"
+            android:text="@string/instruction_to_save"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnOk"
+            android:text="@string/com_sdk_feedback_ok"
+            android:textSize="30dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"/>
+
+    </RelativeLayout>
+
 </RelativeLayout>
