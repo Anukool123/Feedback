@@ -15,4 +15,5 @@ package com.sdk.feedback.util;
 public class AppConstants {
 
     public static final String FRAGMENT_TAG = "fragment_tag";
+    public static final String IMAGE_PATH = "image_path";
 }

@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.sdk.feedback.R;
+import com.sdk.feedback.Setup;
 import com.sdk.feedback.fragmentfactory.BaseFragment;
 
 /**
@@ -46,6 +47,9 @@ public class MainMenuFragment extends BaseFragment {
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"Take Screenshot",Toast.LENGTH_LONG).show();
                 getActivity().finish();
+                // From here i have to call a method -
+                Setup.setTakeScreenshot(true);
+                //
             }
         });
 

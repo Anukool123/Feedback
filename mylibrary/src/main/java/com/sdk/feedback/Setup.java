@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 
 import com.sdk.feedback.fragment.InstructionFragment;
 import com.sdk.feedback.fragment.MainMenuFragment;
+import com.sdk.feedback.fragment.ScreenshotDisplayFragment;
 import com.sdk.feedback.util.AppConstants;
 
 /**
@@ -35,6 +36,12 @@ public class Setup {
     static Context mContext;
     static WindowManager.LayoutParams params;
     static int lastYPosition = 0;
+
+    public static void setTakeScreenshot(boolean takeScreenshot) {
+        Setup.takeScreenshot = takeScreenshot;
+    }
+
+    private static boolean takeScreenshot = false;
 //    private int requestCode;
 //    private int resultCode;
 //    private Intent data;
@@ -49,9 +56,31 @@ public class Setup {
         Log.e(TAG, "enable");
         mContext = context;
 
-        addFloatingButton(mContext);
+        if(takeScreenshot)
+        {
 
-        addTouchEventToFloatingButton(mContext);
+            System.out.println("Time to take screenshot!!!");
+
+            String imagepath = Screenshot.takeScreenShot(mContext);
+
+            // Take screen shot
+
+            // Start a fragment with screenshot loaded onto it
+
+            if(imagepath!=null) {
+                startActivityWithDataForFragment(mContext, ScreenshotDisplayFragment.TAG, imagepath);
+            }
+
+
+
+            takeScreenshot = false;
+        }
+
+        else {
+            addFloatingButton(mContext);
+
+            addTouchEventToFloatingButton(mContext);
+        }
     }
 
 
@@ -141,6 +170,17 @@ public class Setup {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
+
+    private static void startActivityWithDataForFragment(Context context, String tag,String data) {
+        Intent intent = new Intent(context, FeedbackActivity.class);
+        if(tag!=null){
+            intent.putExtra(AppConstants.FRAGMENT_TAG, tag);
+            intent.putExtra(AppConstants.IMAGE_PATH,data);
+        }
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
 
     private static void removeFloatingButton() {
         if (floatingButton != null &&  floatingButton.isShown()) {

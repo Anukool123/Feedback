@@ -12,6 +12,7 @@ package com.sdk.feedback.fragmentfactory.factory;
 import com.sdk.feedback.fragmentfactory.BaseFragment;
 import com.sdk.feedback.fragmentfactory.provider.InstructionFragmentProvider;
 import com.sdk.feedback.fragmentfactory.provider.MainMenuFragmentProvider;
+import com.sdk.feedback.fragmentfactory.provider.ScreenShotDisplayFragmentProvider;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,8 @@ public class FragmentFactory {
 
 	private static List<FragmentProvider> getProviders() {
 		return Arrays.asList(new InstructionFragmentProvider(),
-				new MainMenuFragmentProvider());
+				new MainMenuFragmentProvider(),
+				new ScreenShotDisplayFragmentProvider());
 	}
 
 	public static BaseFragment getFragment(String name) {
