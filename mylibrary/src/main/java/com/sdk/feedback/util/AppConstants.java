@@ -16,4 +16,8 @@ public class AppConstants {
 
     public static final String FRAGMENT_TAG = "fragment_tag";
     public static final String IMAGE_PATH = "image_path";
+    public static final String IMAGE_NAME = "img_com_sdk_feedback_screenshot";
+    public static final String IMAGE_EXTENSION = ".jpg";
+    public static final int IMAGE_QUALITY = 100;
+
 }

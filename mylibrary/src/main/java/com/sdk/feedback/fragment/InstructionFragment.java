@@ -35,7 +35,7 @@ public class InstructionFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        con_sdk_feedback_action_button_instruction_ok = (Button) getView().findViewById(R.id.con_sdk_feedback_action_button_instruction_ok);
+        con_sdk_feedback_action_button_instruction_ok = (Button) getView().findViewById(R.id.com_sdk_feedback_action_button_instruction_ok);
         con_sdk_feedback_action_button_instruction_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

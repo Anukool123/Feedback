@@ -2,5 +2,7 @@
     <string name="app_name">My Library</string>
     <string name="com_sdk_feedback_instruction_text">To provide feedback,\njust tap on the button.</string>
     <string name="com_sdk_feedback_ok">Ok</string>
-    <string name="instruction_to_save">Draw on screen or tap to save</string>
+    <string name="com_sdk_feedback_instruction_to_save">Draw on screen or tap to save</string>
+    <string name="com_sdk_feedback_save">Save</string>
+    <string name="com_sdk_feedback_cancel">Cancel</string>
 </resources>

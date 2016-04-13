@@ -21,7 +21,7 @@ import com.sdk.feedback.util.AppConstants;
  * the written consent of the copyright holder.
  * Project           : My Application
  * File Name         : Setup
- * Description       : TODO: Enter description
+ * Description       : Handle to use feedback SDK
  * Revision History: version 1:
  * Date: 4/1/2016
  * Original author: Bhanu Hirawat
@@ -58,21 +58,12 @@ public class Setup {
 
         if(takeScreenshot)
         {
-
-            System.out.println("Time to take screenshot!!!");
-
-            String imagepath = Screenshot.takeScreenShot(mContext);
-
             // Take screen shot
+            String imagePath = Screenshot.takeScreenShot(mContext);
 
-            // Start a fragment with screenshot loaded onto it
-
-            if(imagepath!=null) {
-                startActivityWithDataForFragment(mContext, ScreenshotDisplayFragment.TAG, imagepath);
+            if(imagePath !=null) {
+                startActivityWithDataForFragment(mContext, ScreenshotDisplayFragment.TAG, imagePath);
             }
-
-
-
             takeScreenshot = false;
         }
 
@@ -112,7 +103,7 @@ public class Setup {
         }
 
         if(!floatingButton.isShown())
-                windowManager.addView(floatingButton, params);
+            windowManager.addView(floatingButton, params);
     }
 
     private static void addTouchEventToFloatingButton(final Context context) {

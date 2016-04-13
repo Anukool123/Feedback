@@ -3,37 +3,70 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/ivScreenshotImage"
+        android:id="@+id/com_sdk_feedback_screenshot_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"/>
 
     <RelativeLayout
-        android:id="@+id/rlInstructionToSave"
+        android:id="@+id/com_sdk_feedback_instruction_to_save"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:background="#66736F6E">
+        android:background="@color/com_sdk_feedback_activity_frame">
 
         <TextView
+            android:id="@+id/com_sdk_feedback_instruction_text"
+            android:singleLine="false"
             android:layout_width="wrap_content"
-            android:textSize="30dp"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_height="wrap_content"
-            android:text="@string/instruction_to_save"/>
+            android:layout_centerInParent="true"
+            android:gravity="center_horizontal"
+            android:text="@string/com_sdk_feedback_instruction_to_save"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/com_sdk_feedback_text_size_large"
+            android:padding="@dimen/com_sdk_feedback_button_instruction_text_padding"/>
 
         <Button
+            android:id="@+id/com_sdk_feedback_action_button_instruction_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btnOk"
-            android:text="@string/com_sdk_feedback_ok"
-            android:textSize="30dp"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"/>
-
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/com_sdk_feedback_text_size_large"
+            android:padding="@dimen/com_sdk_feedback_button_instruction_text_padding"
+            android:background="@android:color/transparent"
+            android:text="@string/com_sdk_feedback_ok"
+            android:textColor="@android:color/white"/>
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/com_sdk_feedback_action_button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:layout_alignParentTop="true"
+        android:visibility="gone">
+        <Button
+            android:id="@+id/com_sdk_feedback_action_screen_shot_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/com_sdk_feedback_text_size_large"
+            android:background="@android:color/transparent"
+            android:text="@string/com_sdk_feedback_save"
+            android:textColor="@android:color/white"/>
+        <Button
+            android:id="@+id/com_sdk_feedback_action_screen_shot_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/com_sdk_feedback_text_size_large"
+            android:background="@android:color/transparent"
+            android:text="@string/com_sdk_feedback_cancel"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
 
 </RelativeLayout>

@@ -45,7 +45,7 @@ public class MainMenuFragment extends BaseFragment {
         com_sdk_feedback_action_take_screeshot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Take Screenshot",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(),"Take Screenshot",Toast.LENGTH_LONG).show();
                 getActivity().finish();
                 // From here i have to call a method -
                 Setup.setTakeScreenshot(true);

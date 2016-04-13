@@ -6,7 +6,7 @@
     android:background="@android:color/transparent">
 
     <TextView
-        android:id="@+id/con_sdk_feedback_instruction_text"
+        android:id="@+id/com_sdk_feedback_instruction_text"
         android:singleLine="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:padding="@dimen/com_sdk_feedback_button_instruction_text_padding"/>
 
     <Button
-        android:id="@+id/con_sdk_feedback_action_button_instruction_ok"
+        android:id="@+id/com_sdk_feedback_action_button_instruction_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
