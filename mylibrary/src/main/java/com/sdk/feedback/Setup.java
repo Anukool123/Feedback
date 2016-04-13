@@ -158,7 +158,7 @@ public class Setup {
         if(tag!=null){
             intent.putExtra(AppConstants.FRAGMENT_TAG, tag);
         }
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
     }
 
@@ -168,7 +168,7 @@ public class Setup {
             intent.putExtra(AppConstants.FRAGMENT_TAG, tag);
             intent.putExtra(AppConstants.IMAGE_PATH,data);
         }
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
     }
 

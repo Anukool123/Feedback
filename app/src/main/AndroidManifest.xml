@@ -3,6 +3,7 @@
     package="myapplication.examples.com.myapplication">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".MyApplication"
@@ -19,6 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Main2Activity"/>
+        <activity android:name="com.sdk.feedback.FeedbackActivity"
+            android:theme="@style/Feedback.Theme.Transparent"/>
     </application>
 
 </manifest>
