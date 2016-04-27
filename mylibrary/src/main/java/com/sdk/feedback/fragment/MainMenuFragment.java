@@ -2,6 +2,7 @@ package com.sdk.feedback.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.sdk.feedback.R;
 import com.sdk.feedback.Setup;
 import com.sdk.feedback.fragmentfactory.BaseFragment;
+import com.sdk.feedback.fragmentfactory.factory.FragmentFactory;
 
 /**
  * Created by 310124463 on 4/5/2016.
@@ -37,7 +39,8 @@ public class MainMenuFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "All Feedback", Toast.LENGTH_LONG).show();
-                getActivity().finish();
+                addFragment(FeedsFragment.TAG);
+                //getActivity().finish();
             }
         });
 
@@ -70,6 +73,18 @@ public class MainMenuFragment extends BaseFragment {
                 getActivity().finish();
             }
         });
+    }
+
+
+    private void addFragment(String fragmentTag)
+    {
+        BaseFragment fragment = FragmentFactory.getFragment(fragmentTag);
+
+        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+
+        ft.replace(R.id.flLibraryContainerView, fragment);
+
+        ft.commit();
     }
 
 }
