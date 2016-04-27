@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context="com.me.trial.chatui.ChatActivity">
+
+    <TextView
+        android:id="@+id/tvHeader"
+        android:background="@drawable/back"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/com_sdk_feedback_feedback"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:padding="8dp"
+        android:layout_height="wrap_content" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tvHeader"
+        android:layout_height="wrap_content">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvMessages"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+   <!-- <ListView
+        android:id="@+id/lvMessages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:gravity="center_vertical"
+        android:background="@drawable/back"
+        android:layout_alignParentBottom="true">
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:id="@+id/etMessage"
+
+            />
+
+        <ImageView
+            android:src="@drawable/screenshot"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:id="@+id/ibGallery"/>
+
+        <ImageView
+            android:src="@drawable/send"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:id="@+id/ibSendButton"/>
+    </LinearLayout>
+
+</RelativeLayout>
