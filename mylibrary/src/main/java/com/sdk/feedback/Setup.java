@@ -14,6 +14,7 @@ import com.sdk.feedback.fragment.InstructionFragment;
 import com.sdk.feedback.fragment.MainMenuFragment;
 import com.sdk.feedback.fragment.ScreenshotDisplayFragment;
 import com.sdk.feedback.util.AppConstants;
+import com.sdk.feedback.util.SharedPreferenceHelper;
 
 /**
  * Copyright(c) Philips Electronics India Ltd
@@ -37,6 +38,9 @@ public class Setup {
     static WindowManager.LayoutParams params;
     static int lastYPosition = 0;
 
+    static float oldBrightness;
+    private static boolean isFlashedBefore = false;
+
     public static void setTakeScreenshot(boolean takeScreenshot) {
         Setup.takeScreenshot = takeScreenshot;
     }
@@ -47,35 +51,48 @@ public class Setup {
 //    private Intent data;
 
 
-    synchronized public static void registerForFeedback(Context context, String apiKey) {
-        Log.e(TAG, "registerForFeedback");
+    synchronized public static void showFirstTimeLaunchInstruction(Context context, String apiKey) {
+        Log.e(TAG, "showFirstTimeLaunchInstruction");
         startActivityWithFragment(context, InstructionFragment.TAG);
     }
 
-    synchronized public static void enable(final Context context, String apiKey){
-        Log.e(TAG, "enable");
+    synchronized public static void enable(final Context context, String apiKey) {
+
+        if (!SharedPreferenceHelper.isFirstLaunchDone(context)) {
+            SharedPreferenceHelper.setFirstLaunchDone(context);
+            showFirstTimeLaunchInstruction(context, apiKey);
+        }
+
+
         mContext = context;
 
-        if(takeScreenshot)
-        {
+        if (takeScreenshot) {
             // Take screen shot
             String imagePath = Screenshot.takeScreenShot(mContext);
 
-            if(imagePath !=null) {
+            flashScreenToMimicScreenshot();
+
+
+            if (imagePath != null) {
                 startActivityWithDataForFragment(mContext, ScreenshotDisplayFragment.TAG, imagePath);
             }
             takeScreenshot = false;
-        }
-
-        else {
+        } else {
             addFloatingButton(mContext);
 
             addTouchEventToFloatingButton(mContext);
         }
     }
 
+    private static void flashScreenToMimicScreenshot() {
+        // change the brigtness of the screen
+        // Get the screen brightness
+        // half the brightness
+        // toggle
+    }
 
-    synchronized public static void disable(){
+
+    synchronized public static void disable() {
         Log.e(TAG, "disable");
         removeFloatingButton();
         params = null;
@@ -84,12 +101,12 @@ public class Setup {
     private static void addFloatingButton(Context context) {
         windowManager = (WindowManager) context.getSystemService(context.WINDOW_SERVICE);
 
-        if(floatingButton == null) {
+        if (floatingButton == null) {
             floatingButton = new com.sdk.feedback.widget.FloatingButtonIcon(context);
             floatingButton.setTranslationX(30);
         }
 
-        if(params == null) {
+        if (params == null) {
             params = new WindowManager.LayoutParams(
                     WindowManager.LayoutParams.WRAP_CONTENT,
                     WindowManager.LayoutParams.WRAP_CONTENT,
@@ -102,7 +119,7 @@ public class Setup {
             params.y = lastYPosition;
         }
 
-        if(!floatingButton.isShown())
+        if (!floatingButton.isShown())
             windowManager.addView(floatingButton, params);
     }
 
@@ -155,18 +172,18 @@ public class Setup {
 
     private static void startActivityWithFragment(Context context, String tag) {
         Intent intent = new Intent(context, FeedbackActivity.class);
-        if(tag!=null){
+        if (tag != null) {
             intent.putExtra(AppConstants.FRAGMENT_TAG, tag);
         }
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
     }
 
-    private static void startActivityWithDataForFragment(Context context, String tag,String data) {
+    private static void startActivityWithDataForFragment(Context context, String tag, String data) {
         Intent intent = new Intent(context, FeedbackActivity.class);
-        if(tag!=null){
+        if (tag != null) {
             intent.putExtra(AppConstants.FRAGMENT_TAG, tag);
-            intent.putExtra(AppConstants.IMAGE_PATH,data);
+            intent.putExtra(AppConstants.IMAGE_PATH, data);
         }
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         context.startActivity(intent);
@@ -174,7 +191,7 @@ public class Setup {
 
 
     private static void removeFloatingButton() {
-        if (floatingButton != null &&  floatingButton.isShown()) {
+        if (floatingButton != null && floatingButton.isShown()) {
             windowManager.removeView(floatingButton);
             floatingButton = null;
         }
@@ -199,4 +216,6 @@ public class Setup {
 //            }
 //        }
 //    }
+
+
 }

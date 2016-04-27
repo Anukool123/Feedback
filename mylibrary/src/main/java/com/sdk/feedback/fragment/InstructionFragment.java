@@ -42,6 +42,13 @@ public class InstructionFragment extends BaseFragment {
                 getActivity().finish();
             }
         });
+
+        getView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
         addFloatingButton(getActivity());
 
     }

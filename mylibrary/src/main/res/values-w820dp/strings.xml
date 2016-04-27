@@ -6,4 +6,5 @@
     <string name="com_sdk_feedback_instruction_to_save">Draw on screen or tap to save</string>
     <string name="com_sdk_feedback_save">Save</string>
     <string name="com_sdk_feedback_feedback">Feedback</string>
+    <string name="preference_file_key">shared_prefs_file</string>
 </resources>

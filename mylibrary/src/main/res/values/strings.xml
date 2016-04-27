@@ -6,4 +6,7 @@
     <string name="com_sdk_feedback_save">Save</string>
     <string name="com_sdk_feedback_cancel">Cancel</string>
     <string name="com_sdk_feedback_feedback">Feedback</string>
+    <string name="preference_file_key">shared_prefs_file</string>
+    <string name="first_launch">first_launch</string>
+    <string name="first_launch_done">first_launch_done</string>
 </resources>
